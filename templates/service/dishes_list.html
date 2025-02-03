@@ -1,27 +1,18 @@
 {% extends "base.html" %}
-
 {% block content %}
-  <h1>Dishes list <a style="float: revert" href="{% url 'service:dish-create' %}" class="custom-btn">ADD</a></h1>
-  {% if dishes_list %}
-    <table class="table">
-      {% for dish in dishes_list %}
-        <table class="table">
-          <a href="{% url 'service:dish-detail' pk=dish.id %}" class="custom-btn">{{ dish.id }}</a>
-          <strong>Name:</strong> {{ dish.name }}.
-          <strong>Description:</strong> {{ dish.description }}.
-          <strong>Price:</strong> {{ dish.price }}.
-          {% for dish_type in dish_types.all %}
-            <strong>Dish type:</strong> {{ dish_type }}.
-          {% endfor %}
-          {% for cook in dish.cooks.all %}
-            <strong>Cooks:</strong> {{ cook }}.
-          {% endfor %}
-          <a style="float: revert" href="{% url 'service:dish-update' pk=dish.id %}" class="custom-btn"><strong>UPDATE</strong></a>
-          <a style="float: revert" href="{% url 'service:dish-delete' pk=dish.id %}" class="custom-btn"><strong>DELETE</strong></a>
-        </table>
-      {% endfor %}
-    </table>
-  {% else %}
-    <p>There are no dishes</p>
-  {% endif %}
+<h1>Dish List</h1>
+<a style="float: revert" href="{% url 'service:dish-create' %}" class="custom-btn">ADD</a>
+<ul>
+    {% for dish in dishes %}
+    <li>
+        <a style="float: revert" href="{% url 'service:dish-detail' pk=dish.id %}"><strong>{{ dish.name }}</strong></a> - {{ dish.price }} грн.
+        <a style="float: revert" href="{% url 'service:dish-update' pk=dish.id %}" class="custom-btn">Редагувати</a>
+        <form action="{% url 'service:dish-delete' dish.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="custom-btn">Видалити</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
+

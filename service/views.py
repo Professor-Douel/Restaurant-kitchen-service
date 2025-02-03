@@ -21,15 +21,31 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class DishesListView(LoginRequiredMixin, generic.ListView):
     model = Dish
-    queryset = Dish.objects.all()
-
-
-class DishCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Dish
-    fields = "__all__"
-    success_url = reverse_lazy("service:dishes-list")
-    template_name = "dish_form.html"
+    template_name = "service/dishes_list.html"
+    context_object_name = "dishes"
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
+    template_name = "service/dish_detail.html"
+    context_object_name = "dish"
+
+
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    form_class = DishForm
+    template_name = "service/dish_form.html"
+    success_url = reverse_lazy("dishes-list")
+
+
+class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Dish
+    form_class = DishForm
+    template_name = "service/dish_form.html"
+    success_url = reverse_lazy("dishes-list")
+
+
+class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Dish
+    template_name = "service/dish_confirm_delete.html"
+    success_url = reverse_lazy("dishes-list")

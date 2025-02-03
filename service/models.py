@@ -23,7 +23,8 @@ class Cook(AbstractUser):
     )
 
     def __str__(self):
-        return f"{self.username} ({self.years_of_experience} років досвіду)"
+        year_label = "year" if self.years_of_experience == 1 else "years"
+        return f"{self.username} ({self.years_of_experience} {year_label} of experience)"
 
 
 class Dish(models.Model):

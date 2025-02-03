@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Kitchen Service</h1>
+  <p>Welcome!</p>
+  <br>
+  <h2>Dynamic content</h2>
+  <p>The Kitchen Service has the following record counts:</p>
+  <ul>
+    <li><strong>Dishes:</strong> {{ num_dishes }}</li>
+  </ul>
+{% endblock %}

@@ -7,7 +7,7 @@
       {% for dish in dishes_list %}
         <table class="table">
           <a href="{% url 'service:dish-detail' pk=dish.id %}" class="custom-btn">{{ dish.id }}</a>
-          <strong>Name:</strong> {{ movie.name }}.
+          <strong>Name:</strong> {{ dish.name }}.
           <strong>Description:</strong> {{ dish.description }}.
           <strong>Price:</strong> {{ dish.price }}.
           {% for dish_type in dish_types.all %}
@@ -17,11 +17,11 @@
             <strong>Cooks:</strong> {{ cook }}.
           {% endfor %}
           <a style="float: revert" href="{% url 'service:dish-update' pk=dish.id %}" class="custom-btn"><strong>UPDATE</strong></a>
-          <a style="float: revert" href="{% url 'service:dish-delete' pk=movie.id %}" class="custom-btn"><strong>DELETE</strong></a>
+          <a style="float: revert" href="{% url 'service:dish-delete' pk=dish.id %}" class="custom-btn"><strong>DELETE</strong></a>
         </table>
       {% endfor %}
     </table>
   {% else %}
-    <p>There are no movies</p>
+    <p>There are no dishes</p>
   {% endif %}
 {% endblock %}

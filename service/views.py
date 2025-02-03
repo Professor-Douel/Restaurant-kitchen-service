@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -47,5 +48,16 @@ class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
-    template_name = "service/dish_confirm_delete.html"
+    template_name = "dish_confirm_delete.html"
     success_url = reverse_lazy("service:dishes")
+
+
+class CustomLoginView(LoginView):
+    def form_valid(self, form):
+        remember_me = self.request.POST.get("remember_me")
+        if not remember_me:
+            self.request.session.set_expiry(0)
+        else:
+            self.request.session.set_expiry(604800)
+
+        return super().form_valid(form)

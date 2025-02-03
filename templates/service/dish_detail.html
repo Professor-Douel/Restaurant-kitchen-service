@@ -3,8 +3,7 @@
 {% block content %}
 <h1>{{ dish.name }}</h1>
 <p>{{ dish.description }}</p>
-<p>Price: {{ dish.price }} грн</p>
-<p>Dish type: {{ dish.dish_type.name }}</p>
-<p>Cook: {% for cook in dish.cooks.all %}{{ cook.username }}, {% endfor %}</p>
-<a href="{% url 'dish_list' %}" class="custom-btn">Back</a>
+  <p><strong>Price: </strong>{{ dish.price }} UAH.</p>
+  <p><strong>Dish type: </strong>{{ dish.dish_type.name }}</p>
+  <p><strong>Cook: </strong>{% for cook in dish.cooks.all %}{{ cook }}, {% endfor %}</p>
 {% endblock %}

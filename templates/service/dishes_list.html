@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dishes list <a style="float: revert" href="{% url 'service:dish-create' %}" class="custom-btn">ADD</a></h1>
+  {% if dishes_list %}
+    <table class="table">
+      {% for dish in dishes_list %}
+        <table class="table">
+          <a href="{% url 'service:dish-detail' pk=dish.id %}" class="custom-btn">{{ dish.id }}</a>
+          <strong>Name:</strong> {{ movie.name }}.
+          <strong>Description:</strong> {{ dish.description }}.
+          <strong>Price:</strong> {{ dish.price }}.
+          {% for dish_type in dish_types.all %}
+            <strong>Dish type:</strong> {{ dish_type }}.
+          {% endfor %}
+          {% for cook in dish.cooks.all %}
+            <strong>Cooks:</strong> {{ cook }}.
+          {% endfor %}
+          <a style="float: revert" href="{% url 'service:dish-update' pk=dish.id %}" class="custom-btn"><strong>UPDATE</strong></a>
+          <a style="float: revert" href="{% url 'service:dish-delete' pk=movie.id %}" class="custom-btn"><strong>DELETE</strong></a>
+        </table>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no movies</p>
+  {% endif %}
+{% endblock %}

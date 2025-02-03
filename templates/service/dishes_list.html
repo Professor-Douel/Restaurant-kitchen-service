@@ -5,12 +5,9 @@
 <ul>
     {% for dish in dishes %}
     <li>
-        <a style="float: revert" href="{% url 'service:dish-detail' pk=dish.id %}"><strong>{{ dish.name }}</strong></a> - {{ dish.price }} грн.
-        <a style="float: revert" href="{% url 'service:dish-update' pk=dish.id %}" class="custom-btn">Редагувати</a>
-        <form action="{% url 'service:dish-delete' dish.pk %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="custom-btn">Видалити</button>
-        </form>
+        <a style="float: revert" href="{% url 'service:dish-detail' pk=dish.id %}"><strong>{{ dish.name }}</strong></a> - {{ dish.price }} UAH.
+        <a style="float: revert" href="{% url 'service:dish-update' pk=dish.id %}" class="custom-btn">Update</a>
+        <a style="float: revert" href="{% url 'service:dish-delete' pk=dish.id %}" class="custom-btn">Delete</a>
     </li>
     {% endfor %}
 </ul>

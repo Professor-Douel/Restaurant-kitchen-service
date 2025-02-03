@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from service.models import Dish
@@ -21,3 +22,11 @@ def index(request: HttpRequest) -> HttpResponse:
 class DishesListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     queryset = Dish.objects.all()
+
+
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    fields = "__all__"
+    success_url = reverse_lazy("service:dishes-list")
+    template_name = "dish_form.html"
+

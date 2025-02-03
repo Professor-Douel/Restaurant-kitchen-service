@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from service.views import index, DishesListView, DishCreateView
+from service.views import index, DishesListView, DishCreateView, DishDetailView
 
 urlpatterns = [
     path("", index, name="index"),

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -11,7 +12,7 @@ class DishType(models.Model):
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.PositiveIntegerField()
+    years_of_experience = models.PositiveIntegerField(default=0)
     groups = models.ManyToManyField(
         "auth.Group",
         related_name="+",
@@ -27,6 +28,9 @@ class Cook(AbstractUser):
         year_label = "year" if self.years_of_experience == 1 else "years"
         return (f"{self.username}"
                 f"({self.years_of_experience} {year_label} of experience)")
+
+    def get_absolute_url(self):
+        return reverse("service:cook-detail", kwargs={"pk": self.pk})
 
 
 class Dish(models.Model):

@@ -3,10 +3,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic
+from django.views.generic import DetailView
 
-from service.models import Dish
+from service.models import Dish, Cook
 
 
 # Create your views here.
@@ -61,3 +62,41 @@ class CustomLoginView(LoginView):
             self.request.session.set_expiry(604800)
 
         return super().form_valid(form)
+
+
+class CookListView(LoginRequiredMixin, generic.ListView):
+    model = Cook
+    template_name = "service/cook_list.html"
+    context_object_name = "cooks"
+
+
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Cook
+    template_name = "service/cook_detail.html"
+    context_object_name = "cook"
+
+
+class CookCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Cook
+    fields = ["username", "email", "first_name", "last_name", "years_of_experience"]
+    template_name = "cook_form.html"
+
+    def get_success_url(self):
+        pk = self.object.pk
+        return reverse("service:cook-detail", kwargs={"pk": pk})
+
+
+class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Cook
+    fields = ["username", "email", "first_name", "last_name", "years_of_experience"]
+    template_name = "cook_form.html"
+
+    def get_success_url(self):
+        pk = self.object.pk
+        return reverse("service:cook-detail", kwargs={"pk": pk})
+
+
+class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Cook
+    template_name = "cook_confirm_delete.html"
+    success_url = reverse_lazy("service:cook-list")

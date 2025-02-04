@@ -71,7 +71,8 @@ urlpatterns = [
         CookUpdateView.as_view(),
         name="cook-update"
     ),
-    path("cook/<int:pk>/delete/",
+    path(
+        "cook/<int:pk>/delete/",
         CookDeleteView.as_view(),
         name="cook-delete"
         ),

@@ -1,6 +1,6 @@
 <ul class="sidebar-nav list-group">
   {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
+    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}" class="custom-btn">{{ user.get_username }}</a></li>
     <li class="list-group-item">
       <form method="POST" action="{% url 'logout' %}">
         {% csrf_token %}
@@ -16,4 +16,5 @@
 
   <li class="list-group-item"><a href="{% url 'service:index' %}" class="custom-btn">Home</a></li>
   <li class="list-group-item"><a href="{% url 'service:dishes' %}" class="custom-btn">Dishes List</a></li>
+  <li class="list-group-item"><a href="{% url 'service:cook-list' %}" class="custom-btn">Cook List</a></li>
 </ul>

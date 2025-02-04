@@ -9,15 +9,20 @@ from django.views import generic
 from service.models import Dish, Cook
 
 
-# Create your views here.
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     num_dishes = Dish.objects.all().count()
+    num_cooks = Cook.objects.all().count()
 
     context = {
         "num_dishes": num_dishes,
+        "num_cooks": num_cooks,
     }
-    return render(request, "service/index.html", context=context)
+    return render(
+        request,
+        "service/index.html",
+        context=context
+    )
 
 
 class DishesListView(LoginRequiredMixin, generic.ListView):
@@ -87,12 +92,21 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
 
 class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
-    fields = ["username", "email", "first_name", "last_name", "years_of_experience"]
+    fields = [
+        "username",
+        "email",
+        "first_name",
+        "last_name",
+        "years_of_experience"
+    ]
     template_name = "cook_form.html"
 
     def get_success_url(self):
         pk = self.object.pk
-        return reverse("service:cook-detail", kwargs={"pk": pk})
+        return reverse(
+            "service:cook-detail",
+            kwargs={"pk": pk}
+        )
 
 
 class CookDeleteView(LoginRequiredMixin, generic.DeleteView):

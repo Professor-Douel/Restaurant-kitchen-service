@@ -1,0 +1,176 @@
+[
+  {
+    "model": "service.dishtype",
+    "pk": 1,
+    "fields": {
+      "name": "Appetizer"
+    }
+  },
+  {
+    "model": "service.dishtype",
+    "pk": 2,
+    "fields": {
+      "name": "Main Course"
+    }
+  },
+  {
+    "model": "service.dishtype",
+    "pk": 3,
+    "fields": {
+      "name": "Dessert"
+    }
+  },
+  {
+    "model": "service.dishtype",
+    "pk": 4,
+    "fields": {
+      "name": "Beverage"
+    }
+  },
+  {
+    "model": "service.cook",
+    "pk": 1,
+    "fields": {
+      "username": "chef_john",
+      "password": "password1",
+      "years_of_experience": 10
+    }
+  },
+  {
+    "model": "service.cook",
+    "pk": 2,
+    "fields": {
+      "username": "chef_anna",
+      "password": "password2",
+      "years_of_experience": 8
+    }
+  },
+  {
+    "model": "service.cook",
+    "pk": 3,
+    "fields": {
+      "username": "chef_mike",
+      "password": "password3",
+      "years_of_experience": 15
+    }
+  },
+  {
+    "model": "service.cook",
+    "pk": 4,
+    "fields": {
+      "username": "chef_susan",
+      "password": "password4",
+      "years_of_experience": 5
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 1,
+    "fields": {
+      "name": "Caesar Salad",
+      "description": "Fresh romaine lettuce with Caesar dressing and croutons.",
+      "price": 8.99,
+      "dish_type": 1,
+      "cooks": [1, 2]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 2,
+    "fields": {
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with fresh tomatoes, mozzarella, and basil.",
+      "price": 12.50,
+      "dish_type": 2,
+      "cooks": [1, 3]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 3,
+    "fields": {
+      "name": "Tiramisu",
+      "description": "Layered Italian dessert with mascarpone and coffee.",
+      "price": 6.75,
+      "dish_type": 3,
+      "cooks": [2]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 4,
+    "fields": {
+      "name": "Lemonade",
+      "description": "Fresh homemade lemonade.",
+      "price": 3.50,
+      "dish_type": 4,
+      "cooks": [4]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 5,
+    "fields": {
+      "name": "Grilled Salmon",
+      "description": "Grilled salmon with lemon butter sauce.",
+      "price": 18.99,
+      "dish_type": 2,
+      "cooks": [3, 4]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 6,
+    "fields": {
+      "name": "French Onion Soup",
+      "description": "Traditional French soup with caramelized onions and melted cheese.",
+      "price": 7.99,
+      "dish_type": 1,
+      "cooks": [1]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 7,
+    "fields": {
+      "name": "Chocolate Cake",
+      "description": "Rich and moist chocolate cake with ganache topping.",
+      "price": 7.25,
+      "dish_type": 3,
+      "cooks": [2, 3]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 8,
+    "fields": {
+      "name": "Espresso",
+      "description": "Strong Italian coffee shot.",
+      "price": 2.99,
+      "dish_type": 4,
+      "cooks": [4]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 9,
+    "fields": {
+      "name": "Beef Stroganoff",
+      "description": "Classic beef stroganoff with creamy mushroom sauce.",
+      "price": 14.99,
+      "dish_type": 2,
+      "cooks": [1, 3]
+    }
+  },
+  {
+    "model": "service.dish",
+    "pk": 10,
+    "fields": {
+      "name": "Mango Smoothie",
+      "description": "Refreshing mango smoothie with yogurt.",
+      "price": 5.25,
+      "dish_type": 4,
+      "cooks": [2]
+    }
+  }
+]

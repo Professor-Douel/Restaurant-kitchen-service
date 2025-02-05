@@ -6,17 +6,19 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from service.models import Dish, Cook
+from service.models import Dish, Cook, DishType
 
 
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
     num_dishes = Dish.objects.all().count()
     num_cooks = Cook.objects.all().count()
+    num_types = DishType.objects.all().count()
 
     context = {
         "num_dishes": num_dishes,
         "num_cooks": num_cooks,
+        "num_types": num_types,
     }
     return render(
         request,
@@ -113,3 +115,35 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     template_name = "cook_confirm_delete.html"
     success_url = reverse_lazy("service:cook-list")
+
+
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
+    model = DishType
+    template_name = "service/dish_type_list.html"
+    context_object_name = "dish_types"
+
+
+class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = DishType
+    template_name = "service/dish_type_detail.html"
+    context_object_name = "dish_type"
+
+
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    template_name = "dish_type_form.html"
+    fields = ["name"]
+    success_url = reverse_lazy("service:dish-types")
+
+
+class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = DishType
+    template_name = "dish_type_form.html"
+    fields = ["name"]
+    success_url = reverse_lazy("service:dish-types")
+
+
+class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = DishType
+    template_name = "dish_type_confirm_delete.html"
+    success_url = reverse_lazy("service:dish-types")

@@ -26,11 +26,7 @@ It allows users to manage dishes, cooks, and their details.
    python -m venv venv
    source venv/bin/activate  # On Windows use: venv\Scripts\activate
    ```
-3. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
-4. Apply database migrations:
+3. Apply database migrations:
    ```sh
    python manage.py makemigrations
    python manage.py migrate
@@ -39,16 +35,16 @@ It allows users to manage dishes, cooks, and their details.
    To populate a database with data from a file data.json:
    python manage.py loaddata data.json
    ```
-5. Create a superuser (admin account):
+4. Create a superuser (admin account):
    ```sh
    python manage.py createsuperuser
    ```
    Follow the prompts to create an admin account.
-6. Run the development server:
+5. Run the development server:
    ```sh
    python manage.py runserver
    ```
-7. Open your browser and navigate to:
+6. Open your browser and navigate to:
    ```
    http://127.0.0.1:8000/
    ```

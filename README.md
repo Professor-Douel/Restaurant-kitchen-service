@@ -35,7 +35,10 @@ It allows users to manage dishes, cooks, and their details.
    To populate a database with data from a file data.json:
    python manage.py loaddata data.json
    ```
-4. Create a superuser (admin account):
+4. Use Username: admin
+       Password: 1qazcde3
+   OR
+   Create a superuser (admin account):
    ```sh
    python manage.py createsuperuser
    ```
@@ -47,6 +50,10 @@ It allows users to manage dishes, cooks, and their details.
 6. Open your browser and navigate to:
    ```
    http://127.0.0.1:8000/
+   ```
+7. To use staticfiles
+   ```sh
+   python manage.py collectstatic
    ```
 
 ## Usage
@@ -80,8 +87,10 @@ restaurant-kitchen-service/         # Django project
 │   │-- urls.py                     # Routes to app views
 │   │-- views.py                    # Views handling HTTP requests
 │-- static/                         # Static files (CSS, JavaScript)
+│-- staticfiles/                    # Empty directory to collect static for rendering
 │-- templates/                      # HTML templates
 │-- .gitignore                      # File which contain exclusions for commits
+│-- dump.json                       # File to 
 │-- data.json                       # File fixture to load data to db
 │-- db.sqlite3                      # SQLite database (if using default settings)
 │-- manage.py                       # Django's command-line utility

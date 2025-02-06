@@ -3,7 +3,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "ep-shiny-sunset-a2l4q73f-pooler.eu-central-1.aws.neon.tech"]
 
 
 # Database

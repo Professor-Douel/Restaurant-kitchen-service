@@ -15,7 +15,10 @@
     </li>
   {% else %}
     <li class="list-group-item">
-      <a href="{% url 'login'%}?next={{request.path}}" class="custom-btn">Login</a>
+      <a href="{% url 'login' %}?next={{ request.path }}" class="custom-btn">Login</a>
+    </li>
+    <li class="list-group-item">
+      <a href="{% url 'register' %}" class="custom-btn">Register</a>
     </li>
   {% endif %}
 

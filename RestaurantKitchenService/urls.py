@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from service.views import RegisterView
 
 urlpatterns = [
     path(
@@ -21,6 +22,11 @@ urlpatterns = [
         include(
             "django.contrib.auth.urls"
         )
+    ),
+    path(
+        "accounts/register/",
+        RegisterView.as_view(),
+        name='register'
     ),
 ] + static(
     settings.STATIC_URL,

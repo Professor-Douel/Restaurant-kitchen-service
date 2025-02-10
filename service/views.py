@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -6,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
+from service.forms import RegisterForm
 from service.models import Dish, Cook, DishType
 
 
@@ -159,3 +161,18 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     template_name = "dish_type_confirm_delete.html"
     success_url = reverse_lazy("service:dish-types")
+
+
+class RegisterView(generic.CreateView):
+    model = Cook
+    form_class = RegisterForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("service:index")
+
+    def form_valid(self, form):
+        cook = form.save(commit=False)
+        cook.set_password(form.cleaned_data["password"])
+        cook.save()
+        login(self.request, cook)
+
+        return super().form_valid(form)

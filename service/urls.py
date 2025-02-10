@@ -37,17 +37,17 @@ urlpatterns = [
         name="dish-create"
     ),
     path(
-        "dish/<int:pk>/",
+        "dishes/<int:pk>/",
         DishDetailView.as_view(),
         name="dish-detail"
     ),
     path(
-        "dish/<int:pk>/update/",
+        "dishes/<int:pk>/update/",
         DishUpdateView.as_view(),
         name="dish-update"
     ),
     path(
-        "dish/<int:pk>/delete/",
+        "dishes/<int:pk>/delete/",
         DishDeleteView.as_view(),
         name="dish-delete"
     ),
@@ -67,17 +67,17 @@ urlpatterns = [
         name="cook-detail"
     ),
     path(
-        "cook/create/",
+        "cooks/create/",
         CookCreateView.as_view(),
         name="cook-create"
     ),
     path(
-        "cook/<int:pk>/update/",
+        "cooks/<int:pk>/update/",
         CookUpdateView.as_view(),
         name="cook-update"
     ),
     path(
-        "cook/<int:pk>/delete/",
+        "cooks/<int:pk>/delete/",
         CookDeleteView.as_view(),
         name="cook-delete"
         ),

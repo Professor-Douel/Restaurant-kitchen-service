@@ -32,11 +32,17 @@ class DishesListView(LoginRequiredMixin, generic.ListView):
     template_name = "service/dishes_list.html"
     context_object_name = "dishes"
 
+    def get_queryset(self):
+        return Dish.objects.select_related("dish_type").prefetch_related("cooks")
+
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
     template_name = "service/dish_detail.html"
     context_object_name = "dish"
+
+    def get_queryset(self):
+        return Dish.objects.select_related("dish_type").prefetch_related("cooks")
 
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
@@ -80,6 +86,9 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
     template_name = "service/cook_detail.html"
     context_object_name = "cook"
+
+    def get_queryset(self):
+        return Cook.objects.prefetch_related("dishes")
 
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
@@ -127,6 +136,9 @@ class DishTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = DishType
     template_name = "service/dish_type_detail.html"
     context_object_name = "dish_type"
+
+    def get_queryset(self):
+        return DishType.objects.prefetch_related("dishes")
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):

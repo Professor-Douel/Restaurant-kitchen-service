@@ -1,5 +1,7 @@
 from django.contrib.auth.models import AbstractUser
+
 from django.db import models
+
 from django.urls import reverse
 
 
@@ -51,7 +53,8 @@ class Dish(models.Model):
     )
     dish_type = models.ForeignKey(
         DishType,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name="dishes",
     )
     cooks = models.ManyToManyField(
         Cook,

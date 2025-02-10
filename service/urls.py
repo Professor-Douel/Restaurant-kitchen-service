@@ -17,7 +17,7 @@ from service.views import (
     DishTypeDetailView,
     DishTypeCreateView,
     DishTypeUpdateView,
-    DishTypeDeleteView
+    DishTypeDeleteView,
 )
 
 urlpatterns = [
